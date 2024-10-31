@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Transaksi - NINE SIX GARAGE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #00ffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 500px;
+            padding: 20px;
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            border-radius: 10px;
+            box-shadow: inset 0 0 5px #00ffff, 0 0 10px rgba(0, 255, 255, 0.6);
+            text-align: center;
+            border: 2px solid #00ffff;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .transaction-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #333;
+        }
+
+        .transaction-item {
+            background-color: #2a2a2a;
+            padding: 8px;
+            border-radius: 3px;
+            margin-bottom: 8px;
+            border: 1px solid #00ffff;
+            color: #00ffff;
+        }
+
+        .transaction-item p {
+            margin: 5px 0;
+        }
+
+        .back-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #008080;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #005f5f;
+        }
+    </style>
+    <script>
+        // Data riwayat transaksi
+        let transactions = [
+            {
+                date: '2024-10-30',
+                item: 'Oli Mesin',
+                amount: 50000,
+            },
+            {
+                date: '2024-10-29',
+                item: 'Busi Motor',
+                amount: 15000,
+            }
+            // Tambahkan data transaksi baru di sini
+        ];
+
+        function displayTransactions() {
+            const transactionList = document.getElementById("transactionList");
+            transactionList.innerHTML = "";
+            transactions.forEach((transaction, index) => {
+                const transactionDiv = document.createElement("div");
+                transactionDiv.className = "transaction-item";
+                transactionDiv.innerHTML = `
+                    <p><strong>Tanggal:</strong> ${transaction.date}</p>
+                    <p><strong>Item:</strong> ${transaction.item}</p>
+                    <p><strong>Jumlah:</strong> Rp${transaction.amount.toLocaleString()}</p>
+                `;
+                transactionList.appendChild(transactionDiv);
+            });
+        }
+
+        function goBack() {
+            window.location.href = 'dashboard.html';
+        }
+
+        window.onload = displayTransactions;
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Riwayat Transaksi</h2>
+        
+        <div class="transaction-list" id="transactionList">
+            <!-- Daftar transaksi akan ditampilkan di sini -->
+        </div>
+
+        <button class="back-button" onclick="goBack()">Kembali ke Dashboard</button>
+    </div>
+
+</body>
+</html>

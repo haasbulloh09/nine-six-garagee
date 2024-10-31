@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catatan Permintaan Customer - NINE SIX GARAGE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #00ffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 500px;
+            padding: 20px;
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            border-radius: 10px;
+            box-shadow: inset 0 0 5px #00ffff, 0 0 10px rgba(0, 255, 255, 0.6);
+            text-align: center;
+            border: 2px solid #00ffff;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .input-area {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #00ffff;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            resize: none;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .submit-button, .back-button {
+            padding: 10px 20px;
+            background-color: #008080;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover, .back-button:hover {
+            background-color: #005f5f;
+        }
+
+        .notes-container {
+            margin-top: 20px;
+            text-align: left;
+            color: #00ffff;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #333;
+        }
+
+        .note-item {
+            background-color: #2a2a2a;
+            padding: 8px;
+            border-radius: 3px;
+            margin-bottom: 8px;
+            border: 1px solid #00ffff;
+        }
+    </style>
+    <script>
+        let notes = [];
+
+        function addNote() {
+            const noteInput = document.getElementById("noteInput");
+            const noteText = noteInput.value.trim();
+            if (noteText) {
+                notes.push(noteText);
+                noteInput.value = "";
+                displayNotes();
+            } else {
+                alert("Masukkan catatan permintaan terlebih dahulu.");
+            }
+        }
+
+        function displayNotes() {
+            const notesContainer = document.getElementById("notesContainer");
+            notesContainer.innerHTML = "";
+            notes.forEach((note, index) => {
+                const noteDiv = document.createElement("div");
+                noteDiv.className = "note-item";
+                noteDiv.textContent = `${index + 1}. ${note}`;
+                notesContainer.appendChild(noteDiv);
+            });
+        }
+
+        function goBack() {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Catatan Permintaan Customer</h2>
+        
+        <textarea id="noteInput" class="input-area" rows="4" placeholder="Masukkan catatan permintaan..."></textarea>
+        
+        <button class="submit-button" onclick="addNote()">Tambah Catatan</button>
+        
+        <div class="notes-container" id="notesContainer">
+            <!-- Catatan customer akan muncul di sini -->
+        </div>
+
+        <button class="back-button" onclick="goBack()">Kembali ke Dashboard</button>
+    </div>
+
+</body>
+</html>
